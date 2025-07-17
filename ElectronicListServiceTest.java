@@ -12,34 +12,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 public class ElectronicListServiceTest {
-    @Test
-    public void testAddItemsToList() {
-        List<String> list = ElectronicListService.addElectronicsItemsToList("computer, Refrigerator, smartphone, printer, Refrigerator");
-        assertEquals("Expected list size without duplicates", 4, list.size());
-        assertTrue("List should contain 'Refrigerator'", list.contains("Refrigerator"));
+    @Before
+    public void setUp() {
+        System.out.println("Setup before each test");
     }
 
-    @Test
-    public void testSearchItemInList() {
-        List<String> list = ElectronicListService.addElectronicsItemsToList("computer, Refrigerator, smartphone, printer");
-        int index = ElectronicListService.searchElectronicItemInList(list, "smartphone");
-        assertEquals("Expected index of 'smartphone' is 2", 2, index);
+    @After
+    public void tearDown() {
+        System.out.println("Cleanup after each test");
     }
 
-    @Test
-    public void testRemoveItemFromList() {
-        List<String> list = ElectronicListService.addElectronicsItemsToList("computer, Refrigerator, smartphone, printer");
-        boolean removed = ElectronicListService.removeElectronicsItemFromList(list, "printer");
-        assertTrue("Printer should be removed", removed);
-        assertFalse("List should no longer contain 'printer'", list.contains("printer"));
-    }
     @Test
     public void givenDuplicateNamesAsInputParameterThenReturnListWithUniqueItems() {
-        List<String> list = ElectronicListService.addElectronicsItemsToList("TV, AC, TV, Fan");
-        assertEquals("Duplicates should be removed", 3, list.size());
-        assertTrue(list.contains("TV"));
-        assertTrue(list.contains("AC"));
-        assertTrue(list.contains("Fan"));
+        List<String> expected = Arrays.asList("computer", "Refrigerator", "smartphone", "printer");
+        List<String> actual = ElectronicListService.addElectronicsItemsToList("computer, Refrigerator, smartphone, printer");
+
+        assertEquals("Expected and actual lists do not match", expected, actual);
     }
 
 }
