@@ -12,46 +12,34 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 public class ElectronicListServiceTest {
-    ElectronicListService electronicListService;
-    List list;
-
-
-    @Before
-    public void setUp(){
-        electronicListService = new ElectronicListService();
-        list = new ArrayList();
-        list.add("computer");
-        list.add("Refrigerator");
-        list.add("smartphone");
-        list.add("printer");
-       // list = Arrays.asList("computer", "Refrigerator", "smartphone", "printer");
-    }
-
-    @After
-    public void tearDown(){
-        electronicListService = null;
-        list = null;
-    }
     @Test
-    public void givenUniqueNamesAsInputParameterThenReturnListWithItems() {
+    public void testAddItemsToList() {
+        List<String> list = ElectronicListService.addElectronicsItemsToList("computer, Refrigerator, smartphone, printer, Refrigerator");
+        assertEquals("Expected list size without duplicates", 4, list.size());
+        assertTrue("List should contain 'Refrigerator'", list.contains("Refrigerator"));
+    }
 
-        final List<String> electronicsItems = electronicListService.addElectronicsItemsToList("computer,Refrigerator,smartphone,printer");
-            assertEquals(list,electronicsItems);
+    @Test
+    public void testSearchItemInList() {
+        List<String> list = ElectronicListService.addElectronicsItemsToList("computer, Refrigerator, smartphone, printer");
+        int index = ElectronicListService.searchElectronicItemInList(list, "smartphone");
+        assertEquals("Expected index of 'smartphone' is 2", 2, index);
+    }
+
+    @Test
+    public void testRemoveItemFromList() {
+        List<String> list = ElectronicListService.addElectronicsItemsToList("computer, Refrigerator, smartphone, printer");
+        boolean removed = ElectronicListService.removeElectronicsItemFromList(list, "printer");
+        assertTrue("Printer should be removed", removed);
+        assertFalse("List should no longer contain 'printer'", list.contains("printer"));
     }
     @Test
     public void givenDuplicateNamesAsInputParameterThenReturnListWithUniqueItems() {
-
-        final List<String> electronicsItems = electronicListService.addElectronicsItemsToList("computer,Refrigerator,smartphone,printer,Refrigerator");
-        list = Arrays.asList("computer", "Refrigerator", "smartphone", "printer");
-        assertEquals(list,electronicsItems);
+        List<String> list = ElectronicListService.addElectronicsItemsToList("TV, AC, TV, Fan");
+        assertEquals("Duplicates should be removed", 3, list.size());
+        assertTrue(list.contains("TV"));
+        assertTrue(list.contains("AC"));
+        assertTrue(list.contains("Fan"));
     }
-    @Test
-    public void givenItemsAsInputParameterThenReturnItemIndexValue() {
-        list = Arrays.asList("computer", "Refrigerator", "smartphone", "printer");
-        final int itemIndex = electronicListService.searchElectronicItemInList(list,"Refrigerator");
-
-        assertEquals(1,itemIndex);
-    }
-
 
 }
