@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+
 import static org.junit.Assert.*;
 
 public class ElectronicListServiceTest {
@@ -24,7 +24,7 @@ public class ElectronicListServiceTest {
         list.add("Refrigerator");
         list.add("smartphone");
         list.add("printer");
-       // list = Arrays.asList("computer", "Refrigerator", "smartphone", "printer");
+        // list = Arrays.asList("computer", "Refrigerator", "smartphone", "printer");
     }
 
     @After
@@ -36,7 +36,7 @@ public class ElectronicListServiceTest {
     public void givenUniqueNamesAsInputParameterThenReturnListWithItems() {
 
         final List<String> electronicsItems = electronicListService.addElectronicsItemsToList("computer,Refrigerator,smartphone,printer");
-            assertEquals(list,electronicsItems);
+        assertEquals(list,electronicsItems);
     }
     @Test
     public void givenDuplicateNamesAsInputParameterThenReturnListWithUniqueItems() {
@@ -55,3 +55,9 @@ public class ElectronicListServiceTest {
 
 
 }
+
+
+
+
+
+
