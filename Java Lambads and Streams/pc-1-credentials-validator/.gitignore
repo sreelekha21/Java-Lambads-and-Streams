@@ -1,0 +1,44 @@
+HELP.md
+target/
+<<<<<<< HEAD
+out/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+=======
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+>>>>>>> 29fca94 (Initial commit)
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+<<<<<<< HEAD
+=======
+
+>>>>>>> 29fca94 (Initial commit)
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+<<<<<<< HEAD
+=======
+
+>>>>>>> 29fca94 (Initial commit)
+### VS Code ###
+.vscode/
